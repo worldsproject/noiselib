@@ -25,3 +25,9 @@ func (c Cylinders) GetValue(x, y, z float64) float64 {
 
 	return 1.0 - (nearestDist * 4.0)
 }
+
+const DefaultCylinderFrequency = 1.0
+
+func DefaultCylinders() Cylinders {
+	return Cylinders{DefaultCylinderFrequency}
+}
