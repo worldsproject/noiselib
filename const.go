@@ -6,6 +6,14 @@ const (
   QualityBEST = 2
 )
 
+const (
+  AbsModuleCount = 1
+  AddModuleCount = 2
+  BillowModuleCount = 0
+  BlendModuleCount = 3
+  ClampModuleCount = 1
+  )
+
 //Really should be a constant, but no constant arrays in Go
 var RandomVectors = []float64{
   -0.763874, -0.596439, -0.246489, 0.0,

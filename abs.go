@@ -27,7 +27,3 @@ func (a Abs) GetValue(x, y, z float64) float64 {
 func (a Abs) SetSourceModule(index int, source Module) {
   a.SourceModule[index] = source
 }
-
-func (a Abs) NewModule() Module {
-  return Abs{make([]Module, 1)}
-}

@@ -20,10 +20,6 @@ func (b Billow) GetSourceModule(index int) Module {
   return b.SourceModule[index]
 }
 
-func (b Billow) GetSourceModuleCount() int {
-  return 0
-}
-
 func (b Billow) GetValue(x, y, z float64) float64 {
   value, signal, curPersistence := float64(0), float64(0), float64(1)
 
@@ -56,7 +52,7 @@ func (b Billow) SetSourceModule(index int, module Module) {
   b.SourceModule[index] = module
 }
 
-func (b Billow) NewModule() Module {
+func DefaultBillow() Billow {
   return Billow {
     make([]Module, 0),
     DefaultBillowFrequency,

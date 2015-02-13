@@ -1,25 +1,25 @@
 package noiselib
 
-type Const struct {
+type Constant struct {
   Value float64
 }
 
-func (c Const) GetSourceModule(index int) Module {
+func (c Constant) GetSourceModule(index int) Module {
   return nil
 }
 
-func (c Const) GetSourceModuleCount() int {
+func (c Constant) GetSourceModuleCount() int {
   return 0
 }
 
-func (c Const) GetValue(x, y, z float64) float64 {
+func (c Constant) GetValue(x, y, z float64) float64 {
   return c.Value
 }
 
-func (c Const) SetSourceModule(index int, sourceModule Module) {
+func (c Constant) SetSourceModule(index int, sourceModule Module) {
   return
 }
 
-func (c Const) NewModule() Module {
-  return Const { 0.0 }
+func (c Constant) NewModule() Constant {
+  return Constant { 0.0 }
 }
