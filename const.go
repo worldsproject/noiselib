@@ -7,13 +7,24 @@ const (
 )
 
 const (
-	AbsModuleCount      = 1
-	AddModuleCount      = 2
-	BillowModuleCount   = 0
-	BlendModuleCount    = 3
-	ClampModuleCount    = 1
-	DisplaceModuleCount = 4
+	AbsModuleCount        = 1
+	AddModuleCount        = 2
+	BillowModuleCount     = 0
+	BlendModuleCount      = 3
+	ClampModuleCount      = 1
+	DisplaceModuleCount   = 4
+	ExponentModuleCount   = 1
+	InvertModuleCount     = 1
+	PowerModuleCount      = 2
+	RotateModuleCount     = 1
+	ScaleBiasModuleCount  = 1
+	ScalePointModuleCount = 1
+	SelectModuleCount     = 3
+	TerraceModuleCount    = 1
+	TurbulenceModuleCount = 1
 )
+
+const SQRT_3 = 1.7320508075688772
 
 //Really should be a constant, but no constant arrays in Go
 var RandomVectors = []float64{
