@@ -10,6 +10,10 @@ func (g GradientColor) AddGradientPoint(position float64, color color.RGBA) {
 	g.GradientPoints[position] = color
 }
 
+func (g GradientColor) ClearGradient() {
+	g.GradientPoints = make(map[float64]color.RGBA)
+}
+
 func (g GradientColor) GetColor(position float64) color.RGBA {
 	keys := []float64{}
 	for k, _ := range g.GradientPoints {
