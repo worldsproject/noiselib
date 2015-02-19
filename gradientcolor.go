@@ -1,7 +1,7 @@
 package noiselib
 
 import (
-	// "fmt"
+	"fmt"
 	"image/color"
 )
 
@@ -18,6 +18,10 @@ func (g *GradientColor) ClearGradient() {
 }
 
 func (g *GradientColor) GetColor(position float64) color.RGBA {
+	if len(g.GradientPoints) < 2 {
+		panic("A GradientColor must have at least 2 points.")
+	}
+
 	keys := []float64{}
 	for k, _ := range g.GradientPoints {
 		keys = append(keys, k)
@@ -39,6 +43,7 @@ func (g *GradientColor) GetColor(position float64) color.RGBA {
 		return g.GradientPoints[keys[index1]]
 	}
 
+	fmt.Printf("index0 %v, index1 %v", index0, index1)
 	input0 := keys[index0]
 	input1 := keys[index1]
 	alpha := (position - input0) / (input1 - input0)
