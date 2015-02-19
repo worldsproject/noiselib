@@ -1,6 +1,8 @@
 package noiselib
 
-import "image/color"
+import (
+	"image/color"
+)
 
 type GradientColor struct {
 	GradientPoints map[float64]color.RGBA
@@ -22,15 +24,15 @@ func (g *GradientColor) GetColor(position float64) color.RGBA {
 
 	indexPos := 0
 
-	for i, k := range keys {
+	for _, k := range keys {
 		if position < k {
-			indexPos = i
 			break
 		}
+		indexPos++
 	}
 
-	index0 := ClampValue(indexPos-1, 0, len(g.GradientPoints))
-	index1 := ClampValue(indexPos, 0, len(g.GradientPoints))
+	index0 := ClampValue(indexPos-1, 0, len(g.GradientPoints)-1)
+	index1 := ClampValue(indexPos, 0, len(g.GradientPoints)-1)
 
 	if index0 == index1 {
 		return g.GradientPoints[keys[index1]]
@@ -41,6 +43,6 @@ func (g *GradientColor) GetColor(position float64) color.RGBA {
 	alpha := (float64(position) - input0) / (input1 - input0)
 
 	color0 := g.GradientPoints[keys[index0]]
-	color1 := g.GradientPoints[keys[index0]]
+	color1 := g.GradientPoints[keys[index1]]
 	return LinearInterpColor(color0, color1, alpha)
 }

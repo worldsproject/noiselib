@@ -19,7 +19,7 @@ func ClampValue(value, lowerBound, upperBound int) int {
 	if value < lowerBound {
 		return lowerBound
 	} else if value > upperBound {
-		return value
+		return upperBound
 	} else {
 		return value
 	}
