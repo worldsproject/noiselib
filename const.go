@@ -25,6 +25,7 @@ const (
 )
 
 const SQRT_3 = 1.7320508075688772
+const SQRT_2 = 1.4142135623730951
 
 //Really should be a constant, but no constant arrays in Go
 var RandomVectors = []float64{
