@@ -14,27 +14,23 @@ func TestGradientColor(t *testing.T) {
 	grad.AddGradientPoint(-1.0, black)
 	grad.AddGradientPoint(1.0, white)
 
-	test := grad.GetColor(-1.0)
-
-	if test.R != 0 || test.G != 0 || test.B != 0 {
-		t.Error("For", "grad.GetColor(-1.0)",
-			"Expected", black,
-			"Got", test)
+	cases := []struct {
+		in  float64
+		out color.RGBA
+	}{
+		{-1.0, color.RGBA{0, 0, 0, 255}},
+		{1.0, color.RGBA{255, 255, 255, 255}},
+		{0.5, color.RGBA{191, 191, 191, 255}},
+		{0.0, color.RGBA{127, 127, 127, 255}},
+		{-5.0, color.RGBA{0, 0, 0, 255}},
+		{6.0, color.RGBA{255, 255, 255, 255}},
 	}
 
-	test = grad.GetColor(1.0)
+	for _, c := range cases {
+		got := grad.GetColor(c.in)
 
-	if test.R != 255 || test.G != 255 || test.B != 255 {
-		t.Error("For", "grad.GetColor(1.0)",
-			"Expected", white,
-			"Got", test)
-	}
-
-	test = grad.GetColor(0.0)
-
-	if test.R != 127 || test.G != 127 || test.B != 127 {
-		t.Error("For", "grad.GetColor(0.0)",
-			"Expected", "{128, 128, 128, 155}",
-			"Got", test)
+		if got != c.out {
+			t.Errorf("Value from %v should be %v but got %v", c.in, c.out, got)
+		}
 	}
 }

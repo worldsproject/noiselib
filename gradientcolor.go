@@ -1,6 +1,7 @@
 package noiselib
 
 import (
+	// "fmt"
 	"image/color"
 )
 
@@ -40,9 +41,10 @@ func (g *GradientColor) GetColor(position float64) color.RGBA {
 
 	input0 := keys[index0]
 	input1 := keys[index1]
-	alpha := (float64(position) - input0) / (input1 - input0)
+	alpha := (position - input0) / (input1 - input0)
 
 	color0 := g.GradientPoints[keys[index0]]
 	color1 := g.GradientPoints[keys[index1]]
+
 	return LinearInterpColor(color0, color1, alpha)
 }

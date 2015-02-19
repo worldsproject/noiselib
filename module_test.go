@@ -5,31 +5,19 @@ import "testing"
 func TestClampValue(t *testing.T) {
 	lower, upper := 2, 5
 
-	test := 1
-
-	answer := 2
-
-	if ClampValue(test, lower, upper) != answer {
-		t.Error("For", test,
-			"Expected", answer,
-			"Got", ClampValue(test, lower, upper))
+	cases := []struct {
+		in, out int
+	}{
+		{1, 2},
+		{4, 4},
+		{10, 5},
 	}
 
-	test = 4
-	answer = 4
+	for _, c := range cases {
+		got := ClampValue(c.in, lower, upper)
 
-	if ClampValue(test, lower, upper) != answer {
-		t.Error("For", test,
-			"Expected", answer,
-			"Got", ClampValue(test, lower, upper))
-	}
-
-	test = 10
-	answer = 5
-
-	if ClampValue(test, lower, upper) != answer {
-		t.Error("For", test,
-			"Expected", answer,
-			"Got", ClampValue(test, lower, upper))
+		if got != c.out {
+			t.Errorf("Value from %+v should be %v but got %v", c.in, c.out, got)
+		}
 	}
 }
