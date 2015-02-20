@@ -14,11 +14,11 @@ const (
 	DefaultVoronoiSeed         = 0
 )
 
-func (v Voronoi) GetSourceModules(index int) Module {
+func (v Voronoi) GetSourceModule(index int) Module {
 	return nil
 }
 
-func (v Voronoi) SetSourceModules(index int, source Module) {
+func (v Voronoi) SetSourceModule(index int, source Module) {
 	return
 }
 
