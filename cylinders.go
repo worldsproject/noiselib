@@ -16,7 +16,7 @@ func (c Cylinders) SetSourceModule(index int, sourceModule Module) {
 
 func (c Cylinders) GetValue(x, y, z float64) float64 {
 	x *= c.Frequency
-	y *= c.Frequency
+	z *= c.Frequency
 
 	distFromCenter := math.Sqrt(x*x + z*z)
 	distFromSmallerSphere := distFromCenter - math.Floor(distFromCenter)
