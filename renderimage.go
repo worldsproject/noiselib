@@ -23,6 +23,7 @@ type RenderImage struct {
 }
 
 func (r *RenderImage) BuildGrayscaleGradient() {
+	r.Gradient.ClearGradient()
 	r.Gradient.AddGradientPoint(-1.0, color.RGBA{0, 0, 0, 255})
 	r.Gradient.AddGradientPoint(1.0, color.RGBA{255, 255, 255, 255})
 }

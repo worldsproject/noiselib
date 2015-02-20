@@ -28,3 +28,7 @@ func (s Spheres) GetValue(x, y, z float64) float64 {
 
 	return 1.0 - (nearestDist * 4.0)
 }
+
+func DefaultSpheres() Spheres {
+	return Spheres{DefaultSphereFrequency}
+}
