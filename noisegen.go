@@ -13,31 +13,26 @@ const (
 func GradientCoherentNoise3D(x, y, z float64, seed, quality int) float64 {
 	//Creating a unit-length cube aligned along an integer boundary.
 	//This cube surrounds the input point.
-	var x0, x1, y0, y1, z0, z1 float64
+	var x1, y1, z1 float64
+	x0, y0, z0 := math.Trunc(x), math.Trunc(y), math.Trunc(z)
 
-	if x > 0 {
-		x0 = math.Trunc(x)
-	} else {
-		x0 = math.Trunc(x) - 1
+	if x < 0 {
+		x0--
 	}
 
 	x1 = x0 + 1
 
-	if y > 0 {
-		y0 = math.Trunc(y)
-	} else {
-		y0 = math.Trunc(y) - 1
+	if y < 0 {
+		y0--
 	}
 
 	y1 = y0 + 1
 
-	if z > 0 {
-		z0 = math.Trunc(z)
-	} else {
-		z0 = math.Trunc(z) - 1
+	if z < 0 {
+		z0--
 	}
 
-	z1 = z0 - 1
+	z1 = z0 + 1
 
 	//Map the difference between the coordinates of the input value and the
 	//coordinates of the cube's outer-lower-left vertex onto an S-curve
