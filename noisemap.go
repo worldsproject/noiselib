@@ -1,7 +1,6 @@
 package noiselib
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -77,10 +76,7 @@ func NoiseMapPlane(lowerXBound, upperXBound, lowerZBound, upperZBound float64,
 	xCur := lowerXBound
 	zCur := lowerZBound
 
-	fmt.Printf("height: %v, width: %v\n", height, width)
-
 	for z := 0; z < height; z++ {
-		xCur = lowerXBound
 		for x := 0; x < width; x++ {
 			if seamless {
 
@@ -97,13 +93,12 @@ func NoiseMapPlane(lowerXBound, upperXBound, lowerZBound, upperZBound float64,
 
 				m[x][z] = LinearInterp(z0, z1, zBlend)
 			} else {
-				// fmt.Printf("xCur: %v, zCur: %v\n", xCur, zCur)
 				m[x][z] = MapToPlane(xCur, zCur, source)
 			}
 
 			xCur += xDelta
 		}
-
+		xCur = lowerXBound
 		zCur += zDelta
 	}
 
