@@ -1,6 +1,7 @@
 package noiselib
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -40,8 +41,8 @@ func MapToSphere(lat, lon float64, source Module) float64 {
 	return source.GetValue(x, y, z)
 }
 
-func NoiseMapCylinder(upperAngleBound, lowerAngleBound,
-	upperHeightBound, lowerHeightBound float64,
+func NoiseMapCylinder(lowerAngleBound, upperAngleBound,
+	lowerHeightBound, upperHeightBound float64,
 	width, height int, source Module) [][]float64 {
 
 	m := MakeMap(width, height)
@@ -64,7 +65,7 @@ func NoiseMapCylinder(upperAngleBound, lowerAngleBound,
 	return m
 }
 
-func NoiseMapPlane(upperXBound, lowerXBound, upperZBound, lowerZBound float64,
+func NoiseMapPlane(lowerXBound, upperXBound, lowerZBound, upperZBound float64,
 	width, height int, seamless bool, source Module) [][]float64 {
 
 	m := MakeMap(width, height)
@@ -76,9 +77,13 @@ func NoiseMapPlane(upperXBound, lowerXBound, upperZBound, lowerZBound float64,
 	xCur := lowerXBound
 	zCur := lowerZBound
 
+	fmt.Printf("height: %v, width: %v\n", height, width)
+
 	for z := 0; z < height; z++ {
+		xCur = lowerXBound
 		for x := 0; x < width; x++ {
 			if seamless {
+
 				swValue := MapToPlane(xCur, zCur, source)
 				seValue := MapToPlane(xCur+xExtent, zCur, source)
 				nwValue := MapToPlane(xCur, zCur+zExtent, source)
@@ -92,6 +97,7 @@ func NoiseMapPlane(upperXBound, lowerXBound, upperZBound, lowerZBound float64,
 
 				m[x][z] = LinearInterp(z0, z1, zBlend)
 			} else {
+				// fmt.Printf("xCur: %v, zCur: %v\n", xCur, zCur)
 				m[x][z] = MapToPlane(xCur, zCur, source)
 			}
 
@@ -100,6 +106,8 @@ func NoiseMapPlane(upperXBound, lowerXBound, upperZBound, lowerZBound float64,
 
 		zCur += zDelta
 	}
+
+	fmt.Printf("xDelta: %v, zDelta: %v", xDelta, zDelta)
 
 	return m
 }

@@ -1,6 +1,9 @@
 package noiselib
 
-import "math"
+import (
+	// "fmt"
+	"math"
+)
 
 const (
 	XNoiseGen     = 1619
@@ -33,6 +36,8 @@ func GradientCoherentNoise3D(x, y, z float64, seed, quality int) float64 {
 	}
 
 	z1 = z0 + 1
+	// fmt.Printf("x:%v, y:%v, z:%v\n", x, y, z)
+	// fmt.Printf("x0:%v, y0:%v, z0:%v\nz1:%v, y1:%v, z1:%v\n", x0, y0, z0, x1, y1, z1)
 
 	//Map the difference between the coordinates of the input value and the
 	//coordinates of the cube's outer-lower-left vertex onto an S-curve
@@ -53,6 +58,8 @@ func GradientCoherentNoise3D(x, y, z float64, seed, quality int) float64 {
 		ys = SCurve5(y - y0)
 		zs = SCurve5(z - z0)
 	}
+
+	// fmt.Printf("xs:%v, ys:%v, zs:%v\n", xs, ys, zs)
 
 	//Now calculate the noise values at each vertex of the cube. To generate
 	//the coherent-noise value at the input point, interpolate these eight
@@ -84,17 +91,16 @@ func GradientNoise3D(fx, fy, fz, ix, iy, iz float64, seed int) float64 {
 	//input value. This implementation generates a random number and uses it
 	//as an index into a normalized-vector lookup table.
 	vectorIndex := int(
-		XNoiseGen*ix +
-			YNoiseGen*iy +
-			ZNoiseGen*iz +
-			float64(SeedNoiseGen)*float64(seed))
-	vectorIndex &= 0xffffffff
+		XNoiseGen*ix+
+			YNoiseGen*iy+
+			ZNoiseGen*iz+
+			float64(SeedNoiseGen*seed)) & 0xffffffff
 	vectorIndex ^= (vectorIndex >> ShiftNoiseGen)
 	vectorIndex &= 0xff
 
-	xvGradient := RandomVectors[vectorIndex*2]
-	yvGradient := RandomVectors[(vectorIndex*2)+1]
-	zvGradient := RandomVectors[(vectorIndex*2)+2]
+	xvGradient := RandomVectors[vectorIndex<<2]
+	yvGradient := RandomVectors[(vectorIndex<<2)+1]
+	zvGradient := RandomVectors[(vectorIndex<<2)+2]
 
 	//Set up us another vector equal to the distance between the two vectors
 	// passed to this function.

@@ -5,6 +5,7 @@ import (
 	"image/color"
 	"image/png"
 	// "image/rectangle"
+	// "fmt"
 	"math"
 	"os"
 	// "image/png"
@@ -111,14 +112,14 @@ func (r *RenderImage) Render() {
 				lightIntensity = 1.0
 			}
 
-			backgroundColor := color.RGBA{255, 255, 255, 255}
+			// backgroundColor := color.RGBA{255, 255, 255, 255}
+			//
+			// if &r.BackgroundImage != nil {
+			// 	backgroundColor = r.BackgroundImage.At(x, y).(color.RGBA)
+			// }
 
-			if &r.BackgroundImage != nil {
-				backgroundColor = r.BackgroundImage.At(x, y).(color.RGBA)
-			}
-
-			newColor := r.calcDestColor(destColor, backgroundColor, lightIntensity)
-			r.DestinationImage.Set(x, y, newColor)
+			// newColor := r.calcDestColor(destColor, backgroundColor, lightIntensity)
+			r.DestinationImage.Set(x, y, destColor)
 		}
 	}
 
