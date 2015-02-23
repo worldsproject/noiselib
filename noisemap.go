@@ -102,8 +102,6 @@ func NoiseMapPlane(lowerXBound, upperXBound, lowerZBound, upperZBound float64,
 		zCur += zDelta
 	}
 
-	fmt.Printf("xDelta: %v, zDelta: %v", xDelta, zDelta)
-
 	return m
 }
 

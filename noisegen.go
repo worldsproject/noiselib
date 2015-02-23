@@ -113,7 +113,7 @@ func GradientNoise3D(fx, fy, fz, ix, iy, iz float64, seed int) float64 {
 	// so that thisnoise value ranges from -1.0 to 1.0
 	return ((xvGradient * xvPoint) +
 		(yvGradient * yvPoint) +
-		(zvGradient*zvPoint)*2.12)
+		(zvGradient * zvPoint)) * 2.12
 }
 
 func IntValueNoise3D(x, y, z, seed int) int {

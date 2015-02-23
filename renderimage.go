@@ -112,14 +112,14 @@ func (r *RenderImage) Render() {
 				lightIntensity = 1.0
 			}
 
-			// backgroundColor := color.RGBA{255, 255, 255, 255}
-			//
-			// if &r.BackgroundImage != nil {
-			// 	backgroundColor = r.BackgroundImage.At(x, y).(color.RGBA)
-			// }
+			backgroundColor := color.RGBA{255, 255, 255, 255}
 
-			// newColor := r.calcDestColor(destColor, backgroundColor, lightIntensity)
-			r.DestinationImage.Set(x, y, destColor)
+			if &r.BackgroundImage != nil {
+				backgroundColor = r.BackgroundImage.At(x, y).(color.RGBA)
+			}
+
+			newColor := r.calcDestColor(destColor, backgroundColor, lightIntensity)
+			r.DestinationImage.Set(x, height-y-1, newColor)
 		}
 	}
 
